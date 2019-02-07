@@ -13,32 +13,24 @@ let config = {
     filename: 'bundle.js'
   },
   module: {
-    loaders: [
+    rules: [
       {
-        loader: 'babel',
-        exclude: /node_modules/,
         test: /\.js$/,
-        query: {
-          presets: ['es2015', 'es2016', 'react']
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env', '@babel/preset-react']
+          }
         }
       }
     ]
+  },
+  devServer: {
+    contentBase: '_site',
+    watchContentBase: true,
+    port: 4000
   }
-}
-
-if (process.env.NODE_ENV === 'production') {
-  config.plugins = [
-    new webpack.DefinePlugin({
-      'process.env': {
-        'NODE_ENV': JSON.stringify('production')
-      }
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: true
-      }
-    })
-  ]
 }
 
 module.exports = config

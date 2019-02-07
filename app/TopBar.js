@@ -17,7 +17,7 @@ class TopBar extends React.Component {
     return (
       <div className='c-TopBar'>
         <div className='c-TopBar__inner'>
-          <a href='https://speedtracker.org'>
+          <a href='https://status.koso.me'>
             <Logo width={40} />
             <LogoTitle width={140} />
           </a>
